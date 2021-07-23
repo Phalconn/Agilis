@@ -5,6 +5,21 @@
     --white-color: #ebebeb;
 }
 
+.odd{
+    font-weight: 100;
+}
+
+.even{
+    font-weight: bold;
+    font-size: large;
+}
+
+.logoFont{
+    font-family: uniwars, sans-serif;
+    font-weight: 600;
+    font-style: bold;
+}
+
 body{
     color: var(--dark-color);
 }

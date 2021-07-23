@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project by Abdoulie Njai</title>
+    <title>AGILIS: A Coding Project by Abdoulie Njai</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,6 +16,9 @@
         <link href="css/site.css" rel="stylesheet">
         <link href="css/prism.css" rel="stylesheet">
         <link rel="icon" type="image/png" href="img/favicon-32x32.png">
+
+         <!-- Adobe Font UNIWARS -->
+         <link rel="stylesheet" href="https://use.typekit.net/obv4okd.css">
    
 </head>
 
@@ -23,8 +26,8 @@
     <!-- ==Nav Section== -->
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="img/logo.svg" class="d-inline-block align-text-top" 
-                width="30" height="24"> APP NAME</a>
+            <a class="navbar-brand logoFont" href="#"><img src="img/logo.svg" class="d-inline-block align-text-top" 
+                width="30" height="24"> AGILIS</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -57,18 +60,107 @@
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers"><code class="language-javascript">
-//Call Hello World
-function helloWorld(){
-    alert("hello World");
+//get the values from the page
+//starts or controller function
+function getValues(){
+    //get values from the page
+    let startValue = document.getElementById("startValue").value;
+    let endValue = document.getElementById("endValue").value;
+    
+    //We need to validate our input
+    //parse into Integers
+    startValue = parseInt(startValue);
+    endValue = parseInt(endValue);
+
+    if(Number.isInteger(startValue) && Number.isInteger(endValue)) {
+        //we call generate Numbers
+        let numbers = generateNumbers(startValue, endValue);
+        //we call display Numbers
+        displayNumbers(numbers);
+    } else {
+        alert("Error: Program is expecting an integer");
+    }
+
+    
+}
+
+//generate numbers from startvalue to endValue
+//logic function(s)
+function generateNumbers(sValue,eValue){
+
+    let numbers = [];
+
+    //we want to get all numbers from start to end
+    for (let index = sValue; index <= eValue; index++) {
+        //this will execute in a loop until index =eValue
+        numbers.push(index);
+    }
+    return numbers;
+}
+
+//display numbers and mark even numbers bold
+//display or view functions
+function displayNumbers(numbers){
+
+    let templateRows = "";
+
+    for (let index = 0; index < numbers.length; index++) {
+        
+        let className = "even";
+        let number = numbers[index];
+
+        if(number % 2 == 0) {
+            className = "even"
+        }
+        else{
+            className = "odd"
+        }
+        templateRows += `<tr><td class="${className}">${number}</td></tr>`;
+    }
+    //This does not render correctly with Prism see the source
+    document.getElementById("results").innerHTML = templateRows;
+
+}
 }
                     </code></pre>
             </div>
                 <div class="col-lg-4">
-                    <p>The code is structured in one funtion.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a funtion that displays an alert with a message of "Hello World"</p>
+                    <p>The code is structured with several Javascript functions.</p>
+                    <h5>Getting Values</h5>
+                    <p>This is the first function. First the user is prompted to enter a start value and an end value.
+                        We created two varuables, namely startValue and endValue which will be retrived by using the
+                        the document method getElementById() and returns an element object representing the element whose id property matches the specified primitive type.
+                    </p>
+                    <h5>Validating Input</h5>
+                    <p>It is crucial that the program validates the type of input the user enters. 
+                        In this program the user is expected to enter an integer.
+                        Therefore we validate the input by using a specific function called parseInt which is 
+                        function  that usually parses a string argument and returns an integer of the specified radix.
+                        However in this case in i expected to parse an integer by using the parameters startValue and endValue stored from the previous values.
+                        <p>We use an boolean to validate the use input which helps to itterate through the program and see if the input parameters previously set have been matched.
+                            If the target value is an integer, return true, otherwise return false. If the value is NaN or Infinity, return false. The method will also return true for floating point numbers that can be represented as integer.
+                       </p>
 
-                </div>
+                       <p>If it fails to return true, the program will alert the user with a message showing that must enter an integer.
+                       </p>
+                       <p>The <strong>let statement</strong> declares a block-scoped local variable, optionally initializing it to a value.
+                    In this case we call the numbers generated and asign it the variable <strong>generateNumbers.</strong></p>
+                    </p>
+                    <p>Next is a <strong>for loop</strong> which will execute untill index is equal to end value and will return numbers.</p>
+                
+                    <h5>Display numbers and mark bold</h5>
+                    <p>We have a funtion of <strong>displayNumbers</strong> which passes a parameter of numbers in a form of an array. 
+                        There is a for loop to validate if the number is even or odd.
+                    two classes of "odd" and "even"  </p>
+                    <p>We then add a <strong>templateRows</strong> variable to store a string. This is a variable we are going to use to hold out HTML.
+                        We also have a for  loop to itterate through our numbers starting from index 0 to the end of the array length and obtain the max number.
+                        In the <strong>for loop</strong> we used a <strong>let statement</strong> to declare the numbers variable to be index and also trmplate row to create a table with rows same number of times as in the array.
+                        For example if there are a hundred numbers in the <strong>numbers.length</strong>, then the templateRows would create a 100 rows and display them on the page.
+
+                    </p>
+    
+                   
+                    </div>
             </div>
         </div>
     </main>
